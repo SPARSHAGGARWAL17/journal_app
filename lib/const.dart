@@ -10,7 +10,7 @@ TextStyle buildTextStyle({
   String family,
 }) {
   return TextStyle(
-    fontSize: size ?? 15,
+    fontSize: size ?? 12,
     fontWeight: weight ?? FontWeight.normal,
     color: color ?? kPrimaryColor,
     fontFamily: family ?? 'Quicksand',

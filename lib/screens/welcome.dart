@@ -12,6 +12,7 @@ class _WelcomePageState extends State<WelcomePage> {
   int currentPage = 0;
   @override
   Widget build(BuildContext context) {
+    final double height = MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -34,8 +35,9 @@ class _WelcomePageState extends State<WelcomePage> {
                     CarouselSlider(
                       options: CarouselOptions(
                         autoPlay: true,
+                        autoPlayCurve: Curves.easeInOutQuart,
                         pageSnapping: true,
-                        height: 460,
+                        height: height * 0.6,
                         onPageChanged: (index, reason) {
                           setState(() {
                             currentPage = index;
@@ -74,7 +76,7 @@ class _WelcomePageState extends State<WelcomePage> {
                           Row(
                             children: [
                               CircleAvatar(
-                                radius: 7,
+                                radius: 5,
                                 backgroundColor: currentPage == i
                                     ? kPrimaryColor
                                     : kSecondaryColor,
@@ -106,6 +108,43 @@ class _WelcomePageState extends State<WelcomePage> {
                       ),
                       color: Colors.white,
                     ),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text:
+                                  'By clicking Get Started you are agreeing to our  ',
+                              style: buildTextStyle(color: Colors.grey[500]),
+                            ),
+                            TextSpan(
+                              text: 'Privacy',
+                              style: buildTextStyle(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: RichText(
+                        text: TextSpan(
+                          children: [
+                            TextSpan(
+                              text: 'Policy ',
+                              style: buildTextStyle(),
+                            ),
+                            TextSpan(
+                              text: 'and ',
+                              style: buildTextStyle(color: Colors.grey[500]),
+                            ),
+                            TextSpan(
+                              text: 'Terms & Conditions',
+                              style: buildTextStyle(),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ).expandFlex(2)
@@ -113,39 +152,6 @@ class _WelcomePageState extends State<WelcomePage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class CustomRaisedButton extends StatelessWidget {
-  const CustomRaisedButton({
-    Key key,
-    this.title,
-    this.onPressed,
-    this.style,
-    this.color,
-  }) : super(key: key);
-  final String title;
-  final Function onPressed;
-  final TextStyle style;
-  final Color color;
-  @override
-  Widget build(BuildContext context) {
-    return RaisedButton(
-      padding: EdgeInsets.symmetric(vertical: 10),
-      elevation: 0,
-      onPressed: onPressed ?? () {},
-      child: Text(
-        title,
-        style: style ??
-            buildTextStyle(
-              color: Colors.white,
-              size: 18,
-              weight: FontWeight.bold,
-            ),
-      ),
-      color: color ?? kPrimaryColor,
-      shape: StadiumBorder(),
     );
   }
 }
